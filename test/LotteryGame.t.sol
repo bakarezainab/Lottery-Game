@@ -2,12 +2,10 @@
 pragma solidity ^0.8.17;
 
 import "forge-std/Test.sol";
-import "../src/SampleGame.sol"; // change SampleGame to LotteryGame
+import "../src/LotteryGame.sol";
 
-contract SampleGameTest is
-    Test // change SampleGame to LotteryGame
-{
-    SampleGame public game; // change SampleGame to LotteryGame
+contract LotteryGameTest is Test {
+    LotteryGame public game;
     address public owner;
     address public player1;
     address public player2;
@@ -24,7 +22,7 @@ contract SampleGameTest is
         vm.deal(player2, 1 ether);
         vm.deal(player3, 1 ether);
 
-        game = new SampleGame(); // change SampleGame to LotteryGame
+        game = new LotteryGame();
     }
 
     function testRegisterWithCorrectAmount() public {
@@ -74,7 +72,7 @@ contract SampleGameTest is
 
     function testUnregisteredPlayerCannotGuess() public {
         vm.prank(player1);
-        vm.expectRevert("Player is not active");
+        vm.expectRevert("Player not registered");
         game.guessNumber(5);
     }
 
@@ -88,14 +86,14 @@ contract SampleGameTest is
         game.guessNumber(6);
 
         // Try to make a third guess
-        vm.expectRevert("Player has already made 2 attempts");
+        vm.expectRevert("No attempts left");
         game.guessNumber(7);
 
         vm.stopPrank();
     }
 
     function testDistributePrizesNoWinners() public {
-        vm.expectRevert("No winners to distribute prizes to");
+        vm.expectRevert("No winners");
         game.distributePrizes();
     }
 }
