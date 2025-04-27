@@ -1,3 +1,7 @@
+# Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+# Deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+# Transaction hash: 0x960065e06902006d0a96aa7f493b175bc50cd620cb1e2253887eff9fe3534ad4
+
 # Solidity Smart Contract Assignment: LotteryGame
 
 ## Overview
